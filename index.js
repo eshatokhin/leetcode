@@ -1,3 +1,40 @@
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function(s) {
+	var isVal = false;
+
+	if (s == null || s.length == 0 || s == "")
+	{
+		console.log("true");
+		return true;
+	}
+
+	var re1 = new RegExp(/\[\]/, "g");
+	var re2 = new RegExp(/\{\}/, "g");
+	var re3 = new RegExp(/\(\)/, "g");
+
+	if (!re1.test(s) && !re2.test(s) && !re3.test(s))
+	{
+		console.log(false);
+		return false
+	}
+
+	var aRe = [];
+	aRe.push(re1);
+	aRe.push(re2);
+	aRe.push(re3);
+	for (var i = 0; i < aRe.length; i++)
+	{
+		s = s.replace(aRe[i], "");
+	}
+	return isValid(s);
+};
+
+isValid("((([][])))")
+
 /**
  * 7 - easy
  * @param {number} x
@@ -115,4 +152,4 @@ var longestCommonPrefix = function(strs) {
 	}
 	console.log(prefix);
 }
-longestCommonPrefix(["cir","ciar"])
+//longestCommonPrefix(["cir","ciar"])
